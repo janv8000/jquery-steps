@@ -709,6 +709,8 @@ function paginationClick(wizard, options, state, index)
  */
 function paginationClickHandler(event)
 {
+    event.preventDefault();
+
     var anchor = $(this),
         wizard = anchor.parent().parent().parent().parent(),
         options = getOptions(wizard),
@@ -718,17 +720,14 @@ function paginationClickHandler(event)
     switch (href.substring(href.lastIndexOf("#")))
     {
         case "#finish":
-            event.preventDefault();
             finishStep(wizard, state);
             break;
 
         case "#next":
-            event.preventDefault();
             goToNextStep(wizard, options, state);
             break;
 
         case "#previous":
-            event.preventDefault();
             goToPreviousStep(wizard, options, state);
             break;
     }
@@ -1018,23 +1017,19 @@ function renderPagination(wizard, options, state)
     if (options.enablePagination)
     {
         var pagination = "<{0} class=\"actions {1}\"><ul role=\"menu\" aria-label=\"{2}\">{3}</ul></{0}>",
-            buttonTemplate = "<li><a href=\"{0}\" role=\"menuitem\">{1}</a></li>",
+            buttonTemplate = "<li><a href=\"#{0}\" role=\"menuitem\">{1}</a></li>",
             buttons = "";
 
         if (!options.forceMoveForward)
         {
-            buttons += format(buttonTemplate, "#previous", options.labels.previous);
+            buttons += format(buttonTemplate, "previous", options.labels.previous);
         }
 
-        buttons += format(buttonTemplate, "#next", options.labels.next);
+        buttons += format(buttonTemplate, "next", options.labels.next);
 
         if (options.enableFinishButton)
         {
-            buttons += format(buttonTemplate, "#finish", options.labels.finish);
-        }
-
-        if (options.enableCancelButton) {
-            buttons += format("<li><a href='{0}' role='menuitem'>{1}</a></li>", options.cancelLink, options.labels.cancel);
+            buttons += format(buttonTemplate, "finish", options.labels.finish);
         }
 
         wizard.append(format(pagination, options.actionContainerTag, options.clearFixCssClass,

@@ -199,26 +199,6 @@ var defaults = $.fn.steps.defaults = {
     enableFinishButton: true,
 
     /**
-     * Shows the cancel button if enabled.
-     *
-     * @property enableCancelButton
-     * @type Boolean
-     * @default true
-     * @for defaults
- **/
-    enableCancelButton: false,
-
-    /**
-     * The link that should be loaded when clicking Cancel button.
-     *
-     * @property cancelLink
-     * @type String
-     * @default "#"
-     * @for defaults
-     **/
-    cancelLink: "#",
-
-    /**
      * Not yet implemented.
      *
      * @property preloadContent
@@ -408,16 +388,6 @@ var defaults = $.fn.steps.defaults = {
          * @default "Loading ..."
          * @for defaults
          **/
-        loading: "Loading ...",
-
-        /**
-         * Label for the cancel button.
-         *
-         * @property cancel
-         * @type String
-         * @default "Cancel"
-         * @for defaults
-         **/
-        cancel: "Cancel"
+        loading: "Loading ..."
     }
 };
